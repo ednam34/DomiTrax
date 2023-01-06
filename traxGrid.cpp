@@ -163,6 +163,7 @@ bool traxGrid::addTraxTuile(int x, int y, TileState player) {
         tiles[y][x].tileDetails.BorderBot = tileNext.tileDetails.BorderBot;
         tiles[y][x].tileDetails.BorderLeft = tileNext.tileDetails.BorderLeft;
         tiles[y][x].tileDetails.BorderRight = tileNext.tileDetails.BorderRight;
+        tiles[y][x].index = tileNext.index;
         tileNext.tileDetails.BorderTop = tilesDetails[1].BorderTop;
         tileNext.tileDetails.BorderBot = tilesDetails[1].BorderBot;
         tileNext.tileDetails.BorderLeft = tilesDetails[1].BorderLeft;

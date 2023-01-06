@@ -1,12 +1,12 @@
 #include <SFML/Graphics.hpp>
 
 #include "Graphics/hpp/traxGridGraphics.hpp"
+#include "hpp/dominoGrid.hpp"
 #include "hpp/grid.hpp"
 #include "hpp/traxGrid.hpp"
 #include "hpp/traxTuile.hpp"
 #include "hpp/tuile.hpp"
 #include "mainScreen.cpp"
-#include "hpp/dominoGrid.hpp"
 
 int Trax(sf::RenderWindow& window) {
     traxGrid tg1 = traxGrid();
@@ -27,6 +27,7 @@ int Trax(sf::RenderWindow& window) {
 
     traxGridGraphics tgGraphics = traxGridGraphics(tg1, window);
     TileState currentPlayer = TileState::Player1;
+    tg1.tileNext.index = 1;
     while (window.isOpen()) {
         // print checkpath()
         sf::Event event;
@@ -36,8 +37,14 @@ int Trax(sf::RenderWindow& window) {
             } else if (event.type == sf::Event::MouseButtonPressed) {
                 // check if the click is a left click
                 if (event.mouseButton.button != sf::Mouse::Left) {
-                    tgGraphics.rotateTile();
-                    // print a message if the click is not a left click
+                    int index = (index + 1) % 7;
+                    if (index == 0) {
+                        index = 1;
+                    }
+                    tg1.tileNext.index = index;
+                    tg1.updateTileNext();
+                    // tg1.changeTileNext(tg1.tileNext.index);
+                    //  print a message if the click is not a left click
                     /*std::cout << "Please use the left mouse button."
                               << std::endl;*/
                 } else {
@@ -72,12 +79,11 @@ int Trax(sf::RenderWindow& window) {
     return 0;
 }
 
-int Domino(){
-    dominoGrid dg1 = dominoGrid(10,10);
+int Domino() {
+    dominoGrid dg1 = dominoGrid(10, 10);
     dg1.setGrid();
     dg1.printGrid();
-    dg1.getDominoTuile(0,0).printBorders();
-
+    dg1.getDominoTuile(0, 0).printBorders();
 }
 
 int Window() {
@@ -88,7 +94,7 @@ int Window() {
     // mainMenuFunc(window)
     if (mainMenuFunc(window) == 1) {
         Trax(window);
-    }else if(mainMenuFunc(window) == 0){
+    } else if (mainMenuFunc(window) == 0) {
         Domino();
     }
     return 0;

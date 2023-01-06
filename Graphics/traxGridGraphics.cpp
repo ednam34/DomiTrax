@@ -1,6 +1,7 @@
 #include "hpp/traxGridGraphics.hpp"
 sf::Sprite colorSprite;
 traxTuileGraphics tuileGraphics;
+
 traxGridGraphics::traxGridGraphics(traxGrid grid, sf::RenderWindow& window) {
     tuileGraphics.textures[0].loadFromFile("textures/0.png");
     tuileGraphics.textures[1].loadFromFile("textures/1.png");
@@ -14,6 +15,9 @@ traxGridGraphics::traxGridGraphics(traxGrid grid, sf::RenderWindow& window) {
 // do render
 void traxGridGraphics::traxGridGraphics::renderGG(sf::RenderWindow& window,
                                                   traxGrid grid) {
+    int a = grid.tileNext.index;
+
+    colorSprite.setTexture(tuileGraphics.textures[a]);
     // Render all tiles
     for (int y = 0; y < BOARD_HEIGHT; y++) {
         for (int x = 0; x < BOARD_WIDTH; x++) {
@@ -27,7 +31,8 @@ void traxGridGraphics::traxGridGraphics::renderGG(sf::RenderWindow& window,
                 // set the texture to white if the tile is empty
                 sprite.setTexture(tuileGraphics.textures[0]);
             } else {
-                sprite.setTexture(tuileGraphics.textures[1]);
+                sprite.setTexture(
+                    tuileGraphics.textures[grid.tiles[y][x].index]);
             }
 
             window.draw(sprite);
@@ -38,4 +43,6 @@ void traxGridGraphics::traxGridGraphics::renderGG(sf::RenderWindow& window,
     window.draw(colorSprite);
 }
 
-void traxGridGraphics::traxGridGraphics::rotateTile() {}
+void traxGridGraphics::traxGridGraphics::rotateTile(traxGrid grid) {
+    grid.tileNext.index = (grid.tileNext.index + 1) % 7;
+}

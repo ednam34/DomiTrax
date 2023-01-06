@@ -23,7 +23,7 @@ class traxGridGraphics {
     //~traxGridGraphics();
     void renderGG(sf::RenderWindow& window, traxGrid grid);
     // Grid of traxGridGraphics
-    void rotateTile();
+    void rotateTile(traxGrid grid);
 
    private:
     std::mt19937 rng;
