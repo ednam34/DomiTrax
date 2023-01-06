@@ -34,6 +34,8 @@ class traxGrid : public Grid {
     TraxTuile tiles[10][10];
     int **Board2Matrix();
     void updateTileNext();
+    int **getSecondMatrix(int **matrix);
+    int **getFirstMatrix(int **matrix);
 
    protected:
    private:

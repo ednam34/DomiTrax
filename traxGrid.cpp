@@ -6,6 +6,8 @@
 #include <random>
 #include <vector>
 
+using namespace std;
+
 traxGrid::traxGrid() : Grid(500, 700) {
     width = BOARD_WIDTH;
     height = BOARD_HEIGHT;
@@ -128,6 +130,9 @@ bool traxGrid::addTraxTuile(int x, int y, TileState player) {
             tileNext.state = TileState::Player1;
         }
         tileNext.index = 1;
+        int **matrix = Board2Matrix();
+        // getFirstMatrix(matrix);
+        getSecondMatrix(matrix);
         return true;
 
     } else {
@@ -156,9 +161,9 @@ int **TileToMatrix(TraxTuile tile) {
     }
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            std::cout << matrix[i][j] << " ";
+            // std::cout << matrix[i][j] << " ";
         }
-        std::cout << std::endl;
+        // std::cout << std::endl;
     }
 
     return matrix;
@@ -186,9 +191,52 @@ int **traxGrid::Board2Matrix() {
     }
     for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
         for (int j = 0; j < BOARD_WIDTH * 3; j++) {
-            std::cout << matrix[i][j] << " ";
+            // std::cout << matrix[i][j] << " ";
+        }
+        // std::cout << std::endl;
+    }
+    return matrix;
+}
+
+// Get traxGrid and replace all 3 by 0 and all 1 by 0
+int **traxGrid::getFirstMatrix(int **matrix) {
+    int **firstMatrix = new int *[BOARD_HEIGHT * 3];
+    for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
+        firstMatrix[i] = new int[BOARD_WIDTH * 3];
+    }
+    for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
+        for (int j = 0; j < BOARD_WIDTH * 3; j++) {
+            if (matrix[i][j] == 3 || matrix[i][j] == 2) {
+                firstMatrix[i][j] = 0;
+            } else {
+                firstMatrix[i][j] == 9;
+            }
+        }
+    }
+    return firstMatrix;
+}
+
+int **traxGrid::getSecondMatrix(int **matrix) {
+    int **secondMatrix = new int *[BOARD_HEIGHT * 3];
+    for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
+        secondMatrix[i] = new int[BOARD_WIDTH * 3];
+    }
+    for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
+        for (int j = 0; j < BOARD_WIDTH * 3; j++) {
+            if (matrix[i][j] == 3 || matrix[i][j] == 1) {
+                secondMatrix[i][j] = 0;
+            } else {
+                secondMatrix[i][j] == 9;
+            }
+        }
+    }
+
+    // print matrix
+    for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
+        for (int j = 0; j < BOARD_WIDTH * 3; j++) {
+            std::cout << secondMatrix[i][j] << " ";
         }
         std::cout << std::endl;
     }
-    return matrix;
+    return secondMatrix;
 }
