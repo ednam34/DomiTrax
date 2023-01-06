@@ -1,8 +1,21 @@
 #include "hpp/grid.hpp"
 #include "hpp/traxGrid.hpp"
 #include "hpp/tuile.hpp"
+#include "mainScreen.cpp"
+#include <SFML/Graphics.hpp>
+
+int Window(){
+    // Create the main window
+    sf::RenderWindow window(sf::VideoMode(700, 500), "SFML window");
+
+    // Start the game loop
+    mainMenuFunc(window);
+}
+
 
 int main() {
+    Window();
+
     Tuile t1(0, 0, 3);
 
     // create a grid
