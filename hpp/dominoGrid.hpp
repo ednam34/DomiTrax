@@ -22,6 +22,7 @@ class dominoGrid: public Grid {
         void printBorders();
         void printRandomBorders();
         void setRandomBorders();
+        void setGrid();
 
     
     protected:

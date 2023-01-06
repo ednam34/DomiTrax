@@ -6,6 +6,7 @@
 #include "hpp/traxTuile.hpp"
 #include "hpp/tuile.hpp"
 #include "mainScreen.cpp"
+#include "hpp/dominoGrid.hpp"
 
 int Trax(sf::RenderWindow& window) {
     traxGrid tg1 = traxGrid();
@@ -71,6 +72,14 @@ int Trax(sf::RenderWindow& window) {
     return 0;
 }
 
+int Domino(){
+    dominoGrid dg1 = dominoGrid(10,10);
+    dg1.setGrid();
+    dg1.printGrid();
+    dg1.getDominoTuile(0,0).printBorders();
+
+}
+
 int Window() {
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(700, 500), "SFML window");
@@ -79,6 +88,8 @@ int Window() {
     // mainMenuFunc(window)
     if (mainMenuFunc(window) == 1) {
         Trax(window);
+    }else if(mainMenuFunc(window) == 0){
+        Domino();
     }
     return 0;
 }

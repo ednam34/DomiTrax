@@ -56,6 +56,10 @@ bool DominoTuile::isBoardEmpty() {
     return isEmpty;
 }
 
+void DominoTuile::setIsEmpty(bool isEmpty) {
+    this->isEmpty = isEmpty;
+}
+
 
 
 

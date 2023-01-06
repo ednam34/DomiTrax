@@ -28,6 +28,7 @@ class DominoTuile: public Tuile {
         std::vector<Borders> getValues();
         void printBorders();
         bool isBoardEmpty();
+        void setIsEmpty(bool isEmpty);
 
 
     protected:
