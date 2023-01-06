@@ -132,7 +132,6 @@ bool traxGrid::addTraxTuile(int x, int y, TileState player) {
         tileNext.index = 1;
         int **matrix = Board2Matrix();
         // getFirstMatrix(matrix);
-        getSecondMatrix(matrix);
         return true;
 
     } else {
@@ -198,8 +197,7 @@ int **traxGrid::Board2Matrix() {
     return matrix;
 }
 
-// Get traxGrid and replace all 3 by 0 and all 1 by 0
-int **traxGrid::getFirstMatrix(int **matrix) {
+/*int **traxGrid::getFirstMatrix(int **matrix) {
     int **firstMatrix = new int *[BOARD_HEIGHT * 3];
     for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
         firstMatrix[i] = new int[BOARD_WIDTH * 3];
@@ -214,9 +212,9 @@ int **traxGrid::getFirstMatrix(int **matrix) {
         }
     }
     return firstMatrix;
-}
+}*/
 
-int **traxGrid::getSecondMatrix(int **matrix) {
+/*int **traxGrid::getSecondMatrix(int **matrix) {
     int **secondMatrix = new int *[BOARD_HEIGHT * 3];
     for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
         secondMatrix[i] = new int[BOARD_WIDTH * 3];
@@ -231,7 +229,6 @@ int **traxGrid::getSecondMatrix(int **matrix) {
         }
     }
 
-    // print matrix
     for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
         for (int j = 0; j < BOARD_WIDTH * 3; j++) {
             std::cout << secondMatrix[i][j] << " ";
@@ -239,4 +236,4 @@ int **traxGrid::getSecondMatrix(int **matrix) {
         std::cout << std::endl;
     }
     return secondMatrix;
-}
+}*/
