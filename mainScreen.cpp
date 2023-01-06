@@ -71,6 +71,7 @@ int mainMenuFunc(sf::RenderWindow& window) {
                     switch (selectedOption) {
                         case DOMINO:
                             std::cout << "domino" << std::endl;
+                            return 0;
                             break;
                         case TRAX:
                             // Start the trax game
@@ -80,6 +81,7 @@ int mainMenuFunc(sf::RenderWindow& window) {
                         case CARCASSONNE:
                             // Start the carcassonne game
                             std::cout << "Carcassonne" << std::endl;
+                            return 2;
                             break;
                     }
                 }
