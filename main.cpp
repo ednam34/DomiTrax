@@ -90,6 +90,8 @@ int Domino(sf::RenderWindow& window) {
                     dg1.addNextDomino(x, y);
                     dg1.setRandomTile();
                     
+                }else{
+                    dg1.setRandomTile();
                 }
             }
         }
