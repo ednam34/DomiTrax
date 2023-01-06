@@ -65,8 +65,10 @@ int Trax(sf::RenderWindow& window) {
 
 int Domino(sf::RenderWindow& window) {
     dominoGrid dg1 = dominoGrid(10, 10);
+    dg1.setRandomTile();
     dg1.setGrid();
     dg1.printGrid();
+    DominoTuileGFX TuileAPlacerGFX = DominoTuileGFX(dg1.randomTile, BOARD_WIDTH * TILE_SIZE + 50,50);
     //create a dominoTuile
     Borders borders = Borders{1, 1, 2};
     //create a vector of borders
@@ -82,12 +84,23 @@ int Domino(sf::RenderWindow& window) {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
+            else if (event.type == sf::Event::MouseButtonPressed) {
+                if (event.mouseButton.button != sf::Mouse::Left){
+                    int x = event.mouseButton.x / TILE_SIZE;
+                    int y = event.mouseButton.y / TILE_SIZE;
+                    dg1.addNextDomino(x, y);
+                    dg1.setRandomTile();
+                    TuileAPlacerGFX = DominoTuileGFX(dg1.randomTile, BOARD_WIDTH * TILE_SIZE + 50,50);
+                    
+                }
+            }
         }
 
         window.clear();
 
         dgGraphics.drawGridDominoTuile(window, dg1);
-
+        //create a dominoTuileGFx and draw it
+        window.draw(TuileAPlacerGFX);
         window.display();
     }
     return 0;

@@ -12,6 +12,40 @@ void dominoGrid::addDominoTuile(int x, int y, int orientation,
     tiles[x][y] = t;
 }
 
+
+void dominoGrid::setRandomTile(){
+    setRandomBorders();
+    //take 4 random borders from the vector of random borders and put them in a vector of borders
+   std::vector<Borders> bordersVector = {randomBorders[rand() % 10],randomBorders[rand() % 10],randomBorders[rand() % 10],randomBorders[rand() % 10]};
+
+    //create a dominoTuile
+    DominoTuile t(0, 0, 0, bordersVector);
+
+    //add the dominoTuile to the grid
+    randomTile = t;
+}
+
+void dominoGrid::addNextDomino(int x, int y){
+    setRandomBorders();
+    //take 4 random borders from the vector of random borders and put them in a vector of borders
+    this->randomTile.setX(x);
+    this->randomTile.setY(y);
+
+    //add the dominoTuile to the grid
+    tiles[x][y] = randomTile;
+}
+
+
+
+
+void dominoGrid::addDominoTuile(DominoTuile t) { 
+
+    //check if the borders of t are the same as the borders of the tiles in x and y +1 and -1 and x+1 and -1 and y=
+    //if they are the same, then the tile is added to the grid
+    tiles[t.getX()][t.getY()] = t;
+}
+
+
 DominoTuile dominoGrid::getDominoTuile(int x, int y) { return tiles[x][y]; }
 
 void dominoGrid::printGrid() {

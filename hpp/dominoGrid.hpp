@@ -16,14 +16,17 @@ class dominoGrid : public Grid {
     dominoGrid(int width, int height);
     ~dominoGrid();
 
-    void addDominoTuile(int x, int y, int orientation,
-                        std::vector<Borders> borders);
+    void addDominoTuile(int x, int y, int orientation,std::vector<Borders> borders);
+    void addDominoTuile(DominoTuile t);
     DominoTuile getDominoTuile(int x, int y);
     void printGrid();
     void printBorders();
     void printRandomBorders();
     void setRandomBorders();
+    void setRandomTile();
+    void addNextDomino(int x, int y);
     void setGrid();
+    DominoTuile randomTile;
 
    protected:
     std::vector<DominoTuile> tuiles;
