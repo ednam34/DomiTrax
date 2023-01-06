@@ -16,6 +16,8 @@ int mainMenuFunc(sf::RenderWindow& window) {
         return 1;
     }
 
+
+    sf::Text TitleText("  DomiTRAXXXX", font, 50);
     sf::Text dominoText("  Domino", font, 24);
     sf::Text traxText("  Trax", font, 24);
     sf::Text carcassonneText("  Carcassonne", font, 24);
@@ -26,6 +28,8 @@ int mainMenuFunc(sf::RenderWindow& window) {
     traxText.setPosition(sf::Vector2f(WINDOW_WIDTH2 / 4, WINDOW_HEIGHT2 / 2));
     carcassonneText.setPosition(
         sf::Vector2f(WINDOW_WIDTH2 / 4, WINDOW_HEIGHT2 / 2 + 50));
+
+    TitleText.setPosition(sf::Vector2f(WINDOW_WIDTH2 / 10, WINDOW_HEIGHT2 / 2 - 150));
 
     // Set up the initial selected menu option
     MenuOption selectedOption = DOMINO;
@@ -113,6 +117,7 @@ int mainMenuFunc(sf::RenderWindow& window) {
             }
             // draw the menu
             window.clear();
+            window.draw(TitleText);
             window.draw(dominoText);
             window.draw(traxText);
             window.draw(carcassonneText);
