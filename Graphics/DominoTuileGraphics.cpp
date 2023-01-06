@@ -92,6 +92,8 @@ void DominoTuileGFX::draw(sf::RenderTarget& target,
                           sf::RenderStates states) const {
     sf::RectangleShape rectangle(sf::Vector2f(50, 50));
     rectangle.setFillColor(sf::Color::White);
+    rectangle.setOutlineColor(sf::Color::Black);
+    rectangle.setOutlineThickness(2);
     rectangle.setPosition(x, y);
 
     target.draw(rectangle);

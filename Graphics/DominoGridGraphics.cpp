@@ -13,7 +13,10 @@ void DominoGridGFX::drawGridDominoTuile (sf::RenderWindow &window, dominoGrid gr
         for (int j = 0; j < 10; j++) {
             DominoTuileGFX dominoTuileGFX = DominoTuileGFX(grid.getDominoTuile(i,j), i * 50, j * 50);
             window.draw(dominoTuileGFX);
-            dominoTuileGFX.setTextPosition(window);
+            if(grid.getDominoTuile(i,j).isBoardEmpty()==false){
+                 dominoTuileGFX.setTextPosition(window);
+            }
+           
         }
     }
 }

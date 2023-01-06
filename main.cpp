@@ -67,7 +67,12 @@ int Domino(sf::RenderWindow& window) {
     dominoGrid dg1 = dominoGrid(10, 10);
     dg1.setGrid();
     dg1.printGrid();
-    dg1.getDominoTuile(0, 0).printBorders();
+    //create a dominoTuile
+    Borders borders = Borders{1, 1, 2};
+    //create a vector of borders
+    std::vector<Borders> bordersVector = {borders,borders,borders,borders};
+    DominoTuile TuileAPlacer = DominoTuile(1, 1, 0, bordersVector);
+    dg1.addDominoTuile(1, 1, 0, bordersVector);
 
     DominoGridGFX dgGraphics = DominoGridGFX();
     while (window.isOpen()) {
