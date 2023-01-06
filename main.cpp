@@ -43,18 +43,22 @@ int Trax(sf::RenderWindow& window) {
                     // Handle a mouse click event
                     int x = event.mouseButton.x / TILE_SIZE;
                     int y = event.mouseButton.y / TILE_SIZE;
-                    bool a = tg1.addTraxTuile(x, y, TileState::Player1);
+                    if (x >= tg1.width || y >= tg1.height || x < 0 || y < 0) {
+                        std::cout << "Out of bounds" << std::endl;
+                    } else {
+                        bool a = tg1.addTraxTuile(x, y, TileState::Player1);
 
-                    // Switch to the other player's turn
-                    if (a && currentPlayer == TileState::Player1) {
-                        currentPlayer = TileState::Player2;
-                        tg1.currentPlayer = TileState::Player2;
-                        // print player 2 turn
-                        std::cout << "Player 2 turn" << std::endl;
-                    } else if (a && currentPlayer == TileState::Player2) {
-                        currentPlayer = TileState::Player1;
-                        tg1.currentPlayer = TileState::Player1;
-                        std::cout << "Player 1 turn" << std::endl;
+                        // Switch to the other player's turn
+                        if (a && currentPlayer == TileState::Player1) {
+                            currentPlayer = TileState::Player2;
+                            tg1.currentPlayer = TileState::Player2;
+                            // print player 2 turn
+                            std::cout << "Player 2 turn" << std::endl;
+                        } else if (a && currentPlayer == TileState::Player2) {
+                            currentPlayer = TileState::Player1;
+                            tg1.currentPlayer = TileState::Player1;
+                            std::cout << "Player 1 turn" << std::endl;
+                        }
                     }
                 }
             }

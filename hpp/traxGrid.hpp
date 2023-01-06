@@ -12,11 +12,13 @@
 const int WINDOW_WIDTH = 700;
 const int WINDOW_HEIGHT = 500;
 const int TILE_SIZE = 50;
-const int BOARD_WIDTH = 8;
-const int BOARD_HEIGHT = 6;
+const int BOARD_WIDTH = 10;
+const int BOARD_HEIGHT = 10;
 
 class traxGrid : public Grid {
    public:
+    int width;
+    int height;
     TileState currentPlayer;
     TraxTuile tileNext;
     std::array<TilesDetails, 7> tilesDetails;
@@ -30,7 +32,7 @@ class traxGrid : public Grid {
     void setNextTilesDetails(TraxTuile tileNext);
     bool placeTile(int x, int y, TileState player);
     bool isBoardEmpty();
-    TraxTuile tiles[6][8];
+    TraxTuile tiles[12][12];
     int **Board2Matrix();
     void updateTileNext();
 

@@ -7,6 +7,8 @@
 #include <vector>
 
 traxGrid::traxGrid() : Grid(500, 700) {
+    width = BOARD_WIDTH;
+    height = BOARD_HEIGHT;
     // initialize the tiles
     tilesDetails[0] = {0, 0, 0, 0};
     tilesDetails[1] = {1, 1, 2, 2};
@@ -40,8 +42,8 @@ void traxGrid::updateTileNext() {
 }
 
 bool traxGrid::isBoardEmpty() {
-    for (int i = 0; i < 6; i++) {
-        for (int j = 0; j < 8; j++) {
+    for (int i = 0; i < BOARD_HEIGHT; i++) {
+        for (int j = 0; j < BOARD_WIDTH; j++) {
             if (tiles[i][j].state != TileState::Empty) {
                 return false;
             }
