@@ -14,10 +14,12 @@ class DominoTuileGFX : public sf::Drawable {
         void draw(sf::RenderTarget& target, sf::RenderStates states) const;
         DominoTuileGFX();
         DominoTuileGFX(DominoTuile dominoTuile, int x, int y);
+        void setTextPosition(sf::RenderTarget& target);
     protected:
         DominoTuile dominoTuile;
         int x;
         int y;
+        std::vector<Borders> values;
 
 };
 
