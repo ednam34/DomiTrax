@@ -68,9 +68,7 @@ int Domino(sf::RenderWindow& window) {
     dg1.setRandomTile();
     dg1.setGrid();
     dg1.printGrid();
-    // create a dominoTuile
     Borders borders = Borders{1, 1, 2};
-    // create a vector of borders
     std::vector<Borders> bordersVector = {borders, borders, borders, borders};
     DominoTuile TuileAPlacer = DominoTuile(1, 1, 0, bordersVector);
     dg1.addDominoTuile(1, 1, 0, bordersVector);
@@ -104,14 +102,13 @@ int Domino(sf::RenderWindow& window) {
         window.draw(TuileAPlacerGFX);
         TuileAPlacerGFX.setTextPosition(window);
         dgGraphics.drawGridDominoTuile(window, dg1);
-        // create a dominoTuileGFx and draw it
 
         window.display();
     }
     return 0;
 }
 
-int Window() {
+int WindowFunc() {
     sf::RenderWindow window(sf::VideoMode(700, 500), "SFML window");
 
     if (mainMenuFunc(window) == 1) {
@@ -123,7 +120,7 @@ int Window() {
 }
 
 int main() {
-    int i = Window();
+    int i = WindowFunc();
     if (i == 0) {
         std::cout << "0" << std::endl;
     } else if (i == 1) {

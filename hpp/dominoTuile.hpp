@@ -25,6 +25,7 @@ class DominoTuile : public Tuile {
     int getY();
     int getOrientation();
     void setValues(std::vector<Borders> values);
+    std::vector<Borders> getBorders();
     std::vector<Borders> getValues();
     void printBorders();
     bool isBoardEmpty();

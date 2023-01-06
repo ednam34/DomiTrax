@@ -30,20 +30,36 @@ void dominoGrid::setRandomTile() {
 
 void dominoGrid::addNextDomino(int x, int y) {
     setRandomBorders();
-    // take 4 random borders from the vector of random borders and put them in a
-    // vector of borders
+
     this->randomTile.setX(x);
     this->randomTile.setY(y);
 
-    // add the dominoTuile to the grid
-    tiles[x][y] = randomTile;
+    addDominoTuile(randomTile);
 }
 
 void dominoGrid::addDominoTuile(DominoTuile t) {
-    // check if the borders of t are the same as the borders of the tiles in x
-    // and y +1 and -1 and x+1 and -1 and y= if they are the same, then the tile
-    // is added to the grid
-    tiles[t.getX()][t.getY()] = t;
+    if(t.getX() < 0 || t.getX() > 9 || t.getY() < 0 || t.getY() > 9) {
+        std::cout << "Error: domino tuile out of bounds" << std::endl;
+        return;
+    }
+    if(tiles[t.getX()+1][t.getY()].isBoardEmpty() == false || tiles[t.getX()-1][t.getY()].isBoardEmpty() == false || tiles[t.getX()][t.getY()+1].isBoardEmpty() == false || tiles[t.getX()][t.getY()-1].isBoardEmpty() == false) {
+        if(tiles[t.getX()+1][t.getY()].getBorders()[2].a == t.getBorders()[1].a && tiles[t.getX()+1][t.getY()].getBorders()[2].b == t.getBorders()[1].b && tiles[t.getX()+1][t.getY()].getBorders()[2].c == t.getBorders()[1].c) {
+            tiles[t.getX()][t.getY()] = t;
+        } else if (t.getX()-1>0)
+        {
+            if(tiles[t.getX()-1][t.getY()].getBorders()[1].a == t.getBorders()[2].a && tiles[t.getX()-1][t.getY()].getBorders()[1].b == t.getBorders()[2].b && tiles[t.getX()-1][t.getY()].getBorders()[1].c == t.getBorders()[2].c){
+                tiles[t.getX()][t.getY()] = t;
+            }
+        }
+        
+        else {
+            std::cout << "Error: domino tuile borders don't match" << std::endl;
+            return;
+        }
+    }else {
+        tiles[t.getX()][t.getY()] = t;
+    }
+   
 }
 
 DominoTuile dominoGrid::getDominoTuile(int x, int y) { return tiles[x][y]; }

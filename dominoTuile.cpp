@@ -33,6 +33,10 @@ int DominoTuile::getY() {
     return this->y;
 }
 
+std::vector<Borders> DominoTuile::getBorders() {
+    return this->values;
+}
+
 int DominoTuile::getOrientation() {
     return this->orientation;
 }
