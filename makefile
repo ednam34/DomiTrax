@@ -1,5 +1,5 @@
-all : main.o tuile.o grid.o traxTuile.o traxGrid.o dominoGrid.o dominoTuile.o traxGridGraphics.o
-	g++ tuile.o grid.o main.o traxTuile.o traxGrid.o dominoGrid.o dominoTuile.o traxGridGraphics.o -o main -lsfml-graphics -lsfml-window -lsfml-system
+all : main.o tuile.o grid.o traxTuile.o traxGrid.o dominoGrid.o dominoTuile.o traxGridGraphics.o DominoTuileGraphics.o DominoGridGraphics.o
+	g++ tuile.o grid.o main.o traxTuile.o traxGrid.o dominoGrid.o dominoTuile.o traxGridGraphics.o DominoTuileGraphics.o DominoGridGraphics.o -o main -lsfml-graphics -lsfml-window -lsfml-system
 
 main.o : main.cpp hpp/tuile.hpp
 	g++ -c main.cpp
@@ -24,6 +24,12 @@ dominoTuile.o : dominoTuile.cpp hpp/dominoTuile.hpp
 
 traxGridGraphics.o : Graphics/traxGridGraphics.cpp Graphics/hpp/traxGridGraphics.hpp
 	g++ -c Graphics/traxGridGraphics.cpp
+
+DominoTuileGraphics.o : Graphics/DominoTuileGraphics.cpp Graphics/hpp/DominoTuileGraphics.hpp
+	g++ -c Graphics/DominoTuileGraphics.cpp
+
+DominoGridGraphics.o : Graphics/DominoGridGraphics.cpp Graphics/hpp/DominoGridGraphics.hpp
+	g++ -c Graphics/DominoGridGraphics.cpp
 
 clean:
 	rm -rf *.o main

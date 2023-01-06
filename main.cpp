@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "Graphics/hpp/traxGridGraphics.hpp"
+#include "Graphics/hpp/DominoTuileGraphics.hpp"
+#include "Graphics/hpp/DominoGridGraphics.hpp"
 #include "hpp/dominoGrid.hpp"
 #include "hpp/grid.hpp"
 #include "hpp/traxGrid.hpp"
@@ -79,11 +81,41 @@ int Trax(sf::RenderWindow& window) {
     return 0;
 }
 
-int Domino() {
+int Domino(sf::RenderWindow& window) {
     dominoGrid dg1 = dominoGrid(10, 10);
     dg1.setGrid();
     dg1.printGrid();
     dg1.getDominoTuile(0, 0).printBorders();
+
+    DominoGridGFX dgGraphics = DominoGridGFX();
+    //launch the window
+    while (window.isOpen()) {  // Start the game loop, the window is the
+
+        // main render window
+        sf::Event event;
+
+        // Process events
+        while (window.pollEvent(event)) {
+            // Close window: exit
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+        }
+
+        // Clear screen
+        window.clear();
+
+        // Draw the sprite
+        dgGraphics.drawGridDominoTuile(window, dg1);
+
+        // Update the window
+        window.display();
+
+        // End the current frame and display its contents on screen
+
+        }
+   
+
 }
 
 int Window() {
@@ -95,7 +127,7 @@ int Window() {
     if (mainMenuFunc(window) == 1) {
         Trax(window);
     } else if (mainMenuFunc(window) == 0) {
-        Domino();
+        Domino(window);
     }
     return 0;
 }

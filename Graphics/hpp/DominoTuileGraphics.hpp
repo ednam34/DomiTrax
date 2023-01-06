@@ -10,6 +10,14 @@
 
 class DominoTuileGFX : public sf::Drawable {
 
+    public:
+        void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+        DominoTuileGFX();
+        DominoTuileGFX(DominoTuile dominoTuile, int x, int y);
+    protected:
+        DominoTuile dominoTuile;
+        int x;
+        int y;
 
 };
 
