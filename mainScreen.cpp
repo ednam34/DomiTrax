@@ -90,7 +90,7 @@ int mainMenuFunc(sf::RenderWindow& window) {
             carcassonneText.setFillColor(sf::Color::White);
             switch (selectedOption) {
                 case DOMINO:
-                    dominoText.setFillColor(sf::Color::Red);
+                    dominoText.setFillColor(sf::Color::Green);
                     //change the text of the button
                     dominoText.setString("> Domino");
                     traxText.setString("  Trax");
@@ -103,7 +103,7 @@ int mainMenuFunc(sf::RenderWindow& window) {
                     carcassonneText.setString("  Carcassonne");
                     break;
                 case CARCASSONNE:
-                    carcassonneText.setFillColor(sf::Color::Red);
+                    carcassonneText.setFillColor(sf::Color::Blue);
                     carcassonneText.setString("> Carcassonne");
                     dominoText.setString("  Domino");
                     traxText.setString("  Trax");
