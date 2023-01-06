@@ -12,8 +12,8 @@
 const int WINDOW_WIDTH = 700;
 const int WINDOW_HEIGHT = 500;
 const int TILE_SIZE = 50;
-const int BOARD_WIDTH = 10;
-const int BOARD_HEIGHT = 10;
+const int BOARD_WIDTH = 3;
+const int BOARD_HEIGHT = 3;
 
 class traxGrid : public Grid {
    public:
