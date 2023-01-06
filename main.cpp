@@ -14,22 +14,19 @@ int main() {
     TraxTuile TuileAPlacer = TraxTuile(1, 1, 0);
     TuileAPlacer.tileDetails = {1, 1, 2, 2};
     TuileAPlacer.state = TileState::Player1;
+
     bool a = tg1.addTraxTuile(TuileAPlacer.getX(), TuileAPlacer.getY(),
                               TuileAPlacer.state);
+    TraxTuile TuileAPlacerBis = TraxTuile(1, 2, 0);
+    TuileAPlacerBis.state = TileState::Player2;
 
-    bool b = tg1.addTraxTuile(TuileAPlacer.getX(), TuileAPlacer.getY(),
-                              TuileAPlacer.state);
+    TuileAPlacerBis.tileDetails = {1, 1, 2, 2};
+    bool b = tg1.addTraxTuile(TuileAPlacerBis.getX(), TuileAPlacerBis.getY(),
+                              TuileAPlacerBis.state);
+    TuileAPlacer.tileDetails = {1, 1, 2, 2};
     std::cout << b << std::endl;
 
     tg1.Board2Matrix();
-    // TileToMatrix(TuileAPlacer);
-    //  tg1.Board2Matrix();
-    //   add a tuile to the grid
-    /*g1.addTuile(t1);
-    Tuile t2 = g1.getTuile(0, 0);*/
-    /*std::cout << t2.getX() << std::endl;
-    std::cout << t2.getY() << std::endl;
-    std::cout << t2.getOrientation() << std::endl;*/
 
     return 0;
 }
