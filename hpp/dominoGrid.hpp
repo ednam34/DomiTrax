@@ -15,8 +15,10 @@ class dominoGrid : public Grid {
     dominoGrid();
     dominoGrid(int width, int height);
     ~dominoGrid();
-
-    void addDominoTuile(int x, int y, int orientation,std::vector<Borders> borders);
+    int width = 10;
+    int height = 10;
+    void addDominoTuile(int x, int y, int orientation,
+                        std::vector<Borders> borders);
     void addDominoTuile(DominoTuile t);
     DominoTuile getDominoTuile(int x, int y);
     void printGrid();

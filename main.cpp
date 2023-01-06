@@ -68,10 +68,10 @@ int Domino(sf::RenderWindow& window) {
     dg1.setRandomTile();
     dg1.setGrid();
     dg1.printGrid();
-    //create a dominoTuile
+    // create a dominoTuile
     Borders borders = Borders{1, 1, 2};
-    //create a vector of borders
-    std::vector<Borders> bordersVector = {borders,borders,borders,borders};
+    // create a vector of borders
+    std::vector<Borders> bordersVector = {borders, borders, borders, borders};
     DominoTuile TuileAPlacer = DominoTuile(1, 1, 0, bordersVector);
     dg1.addDominoTuile(1, 1, 0, bordersVector);
 
@@ -82,27 +82,30 @@ int Domino(sf::RenderWindow& window) {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
-            }
-            else if (event.type == sf::Event::MouseButtonPressed) {
-                if (event.mouseButton.button != sf::Mouse::Left){
+            } else if (event.type == sf::Event::MouseButtonPressed) {
+                if (event.mouseButton.button != sf::Mouse::Right) {
                     int x = event.mouseButton.x / TILE_SIZE;
                     int y = event.mouseButton.y / TILE_SIZE;
-                    dg1.addNextDomino(x, y);
-                    dg1.setRandomTile();
-                    
-                }else{
+                    if (x >= dg1.width || y >= dg1.height || x < 0 || y < 0) {
+                    } else {
+                        dg1.addNextDomino(x, y);
+                        dg1.setRandomTile();
+                    }
+
+                } else {
                     dg1.setRandomTile();
                 }
             }
         }
 
         window.clear();
-        DominoTuileGFX TuileAPlacerGFX = DominoTuileGFX(dg1.randomTile, BOARD_WIDTH * TILE_SIZE + 50,50);
+        DominoTuileGFX TuileAPlacerGFX =
+            DominoTuileGFX(dg1.randomTile, BOARD_WIDTH * TILE_SIZE + 50, 50);
         window.draw(TuileAPlacerGFX);
         TuileAPlacerGFX.setTextPosition(window);
         dgGraphics.drawGridDominoTuile(window, dg1);
-        //create a dominoTuileGFx and draw it
-       
+        // create a dominoTuileGFx and draw it
+
         window.display();
     }
     return 0;
