@@ -153,6 +153,7 @@ bool traxGrid::addTraxTuile(int x, int y, TileState player) {
     if (tiles[y][x].state == TileState::Empty) {
         // Place the tile
         tiles[y][x].state = player;
+
         // Get the texture of colorSprite and put it in the tile
         tiles[y][x].tileDetails = tileNext.tileDetails;
         // tiles[y][x].Tilecolor = tileNext.Tilecolor;
@@ -168,6 +169,11 @@ bool traxGrid::addTraxTuile(int x, int y, TileState player) {
         tileNext.tileDetails.BorderBot = tilesDetails[1].BorderBot;
         tileNext.tileDetails.BorderLeft = tilesDetails[1].BorderLeft;
         tileNext.tileDetails.BorderRight = tilesDetails[1].BorderRight;
+        if (player == TileState::Player1) {
+            tileNext.state = TileState::Player2;
+        } else {
+            tileNext.state = TileState::Player1;
+        }
         // tileNext.tileDetails.texture = textures[1];
         tileNext.index = 1;
         // int **a = Board2Matrix();

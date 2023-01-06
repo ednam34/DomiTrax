@@ -21,7 +21,8 @@ class traxGridGraphics {
     // traxGridGraphics();
     traxGridGraphics(traxGrid grid, sf::RenderWindow& window);
     //~traxGridGraphics();
-    void renderGG(sf::RenderWindow& window, traxGrid grid);
+    void renderGG(sf::RenderWindow& window, traxGrid grid,
+                  TileState currentPlayer);
     // Grid of traxGridGraphics
     void rotateTile(traxGrid grid);
 

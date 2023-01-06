@@ -24,9 +24,9 @@ int Trax(sf::RenderWindow& window) {
                               TuileAPlacerBis.state);
     TuileAPlacer.tileDetails = {1, 1, 2, 2};
     std::cout << b << std::endl;
+    TileState currentPlayer = TileState::Player1;
 
     traxGridGraphics tgGraphics = traxGridGraphics(tg1, window);
-    TileState currentPlayer = TileState::Player1;
     tg1.tileNext.index = 1;
     while (window.isOpen()) {
         // print checkpath()
@@ -43,6 +43,8 @@ int Trax(sf::RenderWindow& window) {
                     }
                     tg1.tileNext.index = index;
                     tg1.updateTileNext();
+                    tg1.tileNext.state = currentPlayer;
+                    // print state
                     // tg1.changeTileNext(tg1.tileNext.index);
                     //  print a message if the click is not a left click
                     /*std::cout << "Please use the left mouse button."
@@ -72,7 +74,7 @@ int Trax(sf::RenderWindow& window) {
             }
         }
         window.clear();
-        tgGraphics.renderGG(window, tg1);
+        tgGraphics.renderGG(window, tg1, currentPlayer);
         window.display();
     }
 

@@ -14,7 +14,8 @@ traxGridGraphics::traxGridGraphics(traxGrid grid, sf::RenderWindow& window) {
 
 // do render
 void traxGridGraphics::traxGridGraphics::renderGG(sf::RenderWindow& window,
-                                                  traxGrid grid) {
+                                                  traxGrid grid,
+                                                  TileState currentPlayer) {
     int a = grid.tileNext.index;
 
     colorSprite.setTexture(tuileGraphics.textures[a]);
@@ -38,7 +39,38 @@ void traxGridGraphics::traxGridGraphics::renderGG(sf::RenderWindow& window,
             window.draw(sprite);
         }
     }
+    // Create a sf::Text object for the player name
+    sf::Text playerNameText;
 
+    // Set the font for the text
+    sf::Font font;
+    font.loadFromFile("arialbis.TTF");
+    playerNameText.setFont(font);
+
+    // Set the character size and color of the text
+    if (currentPlayer == TileState::Player1) {
+        playerNameText.setFillColor(sf::Color::Blue);
+
+        // Set the string of the text to be the player name
+        playerNameText.setString("Joueur 1");
+    }
+    if (currentPlayer == TileState::Player2) {
+        playerNameText.setFillColor(sf::Color::Red);
+
+        // Set the string of the text to be the player name
+        playerNameText.setString("Joueur 2");
+    }
+    playerNameText.setCharacterSize(13);
+
+    // Set the position of the text to be just under the colorSprite
+    sf::Vector2f playerNameTextPosition(
+        colorSprite.getPosition().x - 10,
+        colorSprite.getPosition().y + colorSprite.getGlobalBounds().height +
+            10);
+    playerNameText.setPosition(playerNameTextPosition);
+
+    // Draw the text to the window
+    window.draw(playerNameText);
     colorSprite.setPosition(BOARD_WIDTH * TILE_SIZE + 50, 50);
     window.draw(colorSprite);
 }
