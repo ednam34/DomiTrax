@@ -23,25 +23,13 @@ class traxGrid : public Grid {
     TraxTuile tileNext;
     std::array<TilesDetails, 7> tilesDetails;
     traxGrid();
-    traxGrid(int width, int height);
     bool addTraxTuile(int x, int y, TileState player);
     TraxTuile getTraxTuile(int x, int y);
-    void printGrid();
     bool checkAdjacentTile(int x, int y, TraxTuile player);
-    void setNextTilesDetails(TraxTuile tileNext);
-    bool placeTile(int x, int y, TileState player);
     bool isBoardEmpty();
     TraxTuile tiles[10][10];
     int **Board2Matrix();
     void updateTileNext();
-    // int **getSecondMatrix(int **matrix);
-    // int **getFirstMatrix(int **matrix);
-
-   protected:
-   private:
-    sf::Texture generateRandomTexture();
-    int generateRandomTextureIndex();
-    void rotateTile();
 };
 
 #endif
