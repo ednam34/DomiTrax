@@ -20,8 +20,9 @@ void dominoGrid::setRandomTile(){
 
     //create a dominoTuile
     DominoTuile t(0, 0, 0, bordersVector);
-
+    t.setIsEmpty(false);
     //add the dominoTuile to the grid
+    randomTile.setIsEmpty(false);
     randomTile = t;
 }
 

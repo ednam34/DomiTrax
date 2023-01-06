@@ -68,7 +68,6 @@ int Domino(sf::RenderWindow& window) {
     dg1.setRandomTile();
     dg1.setGrid();
     dg1.printGrid();
-    DominoTuileGFX TuileAPlacerGFX = DominoTuileGFX(dg1.randomTile, BOARD_WIDTH * TILE_SIZE + 50,50);
     //create a dominoTuile
     Borders borders = Borders{1, 1, 2};
     //create a vector of borders
@@ -90,17 +89,18 @@ int Domino(sf::RenderWindow& window) {
                     int y = event.mouseButton.y / TILE_SIZE;
                     dg1.addNextDomino(x, y);
                     dg1.setRandomTile();
-                    TuileAPlacerGFX = DominoTuileGFX(dg1.randomTile, BOARD_WIDTH * TILE_SIZE + 50,50);
                     
                 }
             }
         }
 
         window.clear();
-
+        DominoTuileGFX TuileAPlacerGFX = DominoTuileGFX(dg1.randomTile, BOARD_WIDTH * TILE_SIZE + 50,50);
+        window.draw(TuileAPlacerGFX);
+        TuileAPlacerGFX.setTextPosition(window);
         dgGraphics.drawGridDominoTuile(window, dg1);
         //create a dominoTuileGFx and draw it
-        window.draw(TuileAPlacerGFX);
+       
         window.display();
     }
     return 0;
