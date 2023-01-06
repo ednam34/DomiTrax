@@ -1,26 +1,91 @@
-#include "hpp/grid.hpp"
-#include "hpp/traxGrid.hpp"
-#include "hpp/tuile.hpp"
-#include "mainScreen.cpp"
 #include <SFML/Graphics.hpp>
 
-int Window(){
+#include "Graphics/hpp/traxGridGraphics.hpp"
+#include "hpp/grid.hpp"
+#include "hpp/traxGrid.hpp"
+#include "hpp/traxTuile.hpp"
+#include "hpp/tuile.hpp"
+#include "mainScreen.cpp"
+
+int Trax(sf::RenderWindow& window) {
+    traxGrid tg1 = traxGrid();
+    TraxTuile TuileAPlacer = TraxTuile(1, 1, 0);
+    TuileAPlacer.tileDetails = {1, 1, 2, 2};
+    TuileAPlacer.state = TileState::Player1;
+
+    bool a = tg1.addTraxTuile(TuileAPlacer.getX(), TuileAPlacer.getY(),
+                              TuileAPlacer.state);
+    TraxTuile TuileAPlacerBis = TraxTuile(1, 2, 0);
+    TuileAPlacerBis.state = TileState::Player2;
+
+    TuileAPlacerBis.tileDetails = {1, 1, 2, 2};
+    bool b = tg1.addTraxTuile(TuileAPlacerBis.getX(), TuileAPlacerBis.getY(),
+                              TuileAPlacerBis.state);
+    TuileAPlacer.tileDetails = {1, 1, 2, 2};
+    std::cout << b << std::endl;
+
+    traxGridGraphics tgGraphics = traxGridGraphics(tg1, window);
+    TileState currentPlayer = TileState::Player1;
+    while (window.isOpen()) {
+        // print checkpath()
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            } else if (event.type == sf::Event::MouseButtonPressed) {
+                // check if the click is a left click
+                if (event.mouseButton.button != sf::Mouse::Left) {
+                    tgGraphics.rotateTile();
+                    // print a message if the click is not a left click
+                    /*std::cout << "Please use the left mouse button."
+                              << std::endl;*/
+                } else {
+                    // Handle a mouse click event
+                    int x = event.mouseButton.x / TILE_SIZE;
+                    int y = event.mouseButton.y / TILE_SIZE;
+                    bool a = tg1.addTraxTuile(x, y, TileState::Player1);
+
+                    // Switch to the other player's turn
+                    if (a && currentPlayer == TileState::Player1) {
+                        currentPlayer = TileState::Player2;
+                        tg1.currentPlayer = TileState::Player2;
+                        // print player 2 turn
+                        std::cout << "Player 2 turn" << std::endl;
+                    } else if (a && currentPlayer == TileState::Player2) {
+                        currentPlayer = TileState::Player1;
+                        tg1.currentPlayer = TileState::Player1;
+                        std::cout << "Player 1 turn" << std::endl;
+                    }
+                }
+            }
+        }
+        window.clear();
+        tgGraphics.renderGG(window, tg1);
+        window.display();
+    }
+
+    return 0;
+}
+
+int Window() {
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(700, 500), "SFML window");
 
     // Start the game loop
-    return mainMenuFunc(window);
+    // mainMenuFunc(window)
+    if (mainMenuFunc(window) == 1) {
+        Trax(window);
+    }
+    return 0;
 }
-
 
 int main() {
     int i = Window();
-    if (i == 0)
-    {
+    if (i == 0) {
         std::cout << "0" << std::endl;
-    }
-    else if (i == 1) {
-        Tuile t1(0, 0, 3);
+    } else if (i == 1) {
+        std::cout << "1" << std::endl;
+        /*Tuile t1(0, 0, 3);
 
         // create a grid
         Grid g1(10, 10);
@@ -33,23 +98,22 @@ int main() {
         TuileAPlacer.state = TileState::Player1;
 
         bool a = tg1.addTraxTuile(TuileAPlacer.getX(), TuileAPlacer.getY(),
-                                TuileAPlacer.state);
+                                  TuileAPlacer.state);
         TraxTuile TuileAPlacerBis = TraxTuile(1, 2, 0);
         TuileAPlacerBis.state = TileState::Player2;
 
         TuileAPlacerBis.tileDetails = {1, 1, 2, 2};
-        bool b = tg1.addTraxTuile(TuileAPlacerBis.getX(), TuileAPlacerBis.getY(),
-                                TuileAPlacerBis.state);
+        bool b =
+            tg1.addTraxTuile(TuileAPlacerBis.getX(), TuileAPlacerBis.getY(),
+                             TuileAPlacerBis.state);
         TuileAPlacer.tileDetails = {1, 1, 2, 2};
         std::cout << b << std::endl;
 
-        tg1.Board2Matrix();
-    }
-    else if (i == 2)
-    {
+        tg1.Board2Matrix();*/
+
+    } else if (i == 2) {
         std::cout << "2" << std::endl;
     }
-    
 
     return 0;
 }
