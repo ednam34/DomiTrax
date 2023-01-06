@@ -26,4 +26,4 @@ class Tuile {
     TileState state;
 };
 
-#endif  // TUILE_HPP
+#endif

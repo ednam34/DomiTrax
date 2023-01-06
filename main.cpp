@@ -16,28 +16,16 @@ int Trax(sf::RenderWindow& window) {
     TuileAPlacer.tileDetails = {1, 1, 2, 2};
     TuileAPlacer.state = TileState::Player1;
 
-    bool a = tg1.addTraxTuile(TuileAPlacer.getX(), TuileAPlacer.getY(),
-                              TuileAPlacer.state);
-    TraxTuile TuileAPlacerBis = TraxTuile(1, 2, 0);
-    TuileAPlacerBis.state = TileState::Player2;
-
-    TuileAPlacerBis.tileDetails = {1, 1, 2, 2};
-    bool b = tg1.addTraxTuile(TuileAPlacerBis.getX(), TuileAPlacerBis.getY(),
-                              TuileAPlacerBis.state);
-    TuileAPlacer.tileDetails = {1, 1, 2, 2};
-    std::cout << b << std::endl;
     TileState currentPlayer = TileState::Player1;
 
     traxGridGraphics tgGraphics = traxGridGraphics(tg1, window);
     tg1.tileNext.index = 1;
     while (window.isOpen()) {
-        // print checkpath()
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
             } else if (event.type == sf::Event::MouseButtonPressed) {
-                // check if the click is a left click
                 if (event.mouseButton.button != sf::Mouse::Left) {
                     int index = (index + 1) % 7;
                     if (index == 0) {
@@ -46,13 +34,7 @@ int Trax(sf::RenderWindow& window) {
                     tg1.tileNext.index = index;
                     tg1.updateTileNext();
                     tg1.tileNext.state = currentPlayer;
-                    // print state
-                    // tg1.changeTileNext(tg1.tileNext.index);
-                    //  print a message if the click is not a left click
-                    /*std::cout << "Please use the left mouse button."
-                              << std::endl;*/
                 } else {
-                    // Handle a mouse click event
                     int x = event.mouseButton.x / TILE_SIZE;
                     int y = event.mouseButton.y / TILE_SIZE;
                     if (x >= tg1.width || y >= tg1.height || x < 0 || y < 0) {
@@ -60,11 +42,9 @@ int Trax(sf::RenderWindow& window) {
                     } else {
                         bool a = tg1.addTraxTuile(x, y, TileState::Player1);
 
-                        // Switch to the other player's turn
                         if (a && currentPlayer == TileState::Player1) {
                             currentPlayer = TileState::Player2;
                             tg1.currentPlayer = TileState::Player2;
-                            // print player 2 turn
                             std::cout << "Player 2 turn" << std::endl;
                         } else if (a && currentPlayer == TileState::Player2) {
                             currentPlayer = TileState::Player1;
@@ -90,40 +70,27 @@ int Domino(sf::RenderWindow& window) {
     dg1.getDominoTuile(0, 0).printBorders();
 
     DominoGridGFX dgGraphics = DominoGridGFX();
-    // launch the window
-    while (window.isOpen()) {  // Start the game loop, the window is the
-
-        // main render window
+    while (window.isOpen()) {
         sf::Event event;
 
-        // Process events
         while (window.pollEvent(event)) {
-            // Close window: exit
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }
 
-        // Clear screen
         window.clear();
 
-        // Draw the sprite
         dgGraphics.drawGridDominoTuile(window, dg1);
 
-        // Update the window
         window.display();
-
-        // End the current frame and display its contents on screen
     }
     return 0;
 }
 
 int Window() {
-    // Create the main window
     sf::RenderWindow window(sf::VideoMode(700, 500), "SFML window");
 
-    // Start the game loop
-    // mainMenuFunc(window)
     if (mainMenuFunc(window) == 1) {
         Trax(window);
     } else if (mainMenuFunc(window) == 0) {
@@ -138,31 +105,6 @@ int main() {
         std::cout << "0" << std::endl;
     } else if (i == 1) {
         std::cout << "1" << std::endl;
-        /*Tuile t1(0, 0, 3);
-
-        // create a grid
-        Grid g1(10, 10);
-        std::cout << g1.getWidth() << std::endl;
-        std::cout << g1.getHeight() << std::endl;
-
-        traxGrid tg1 = traxGrid();
-        TraxTuile TuileAPlacer = TraxTuile(1, 1, 0);
-        TuileAPlacer.tileDetails = {1, 1, 2, 2};
-        TuileAPlacer.state = TileState::Player1;
-
-        bool a = tg1.addTraxTuile(TuileAPlacer.getX(), TuileAPlacer.getY(),
-                                  TuileAPlacer.state);
-        TraxTuile TuileAPlacerBis = TraxTuile(1, 2, 0);
-        TuileAPlacerBis.state = TileState::Player2;
-
-        TuileAPlacerBis.tileDetails = {1, 1, 2, 2};
-        bool b =
-            tg1.addTraxTuile(TuileAPlacerBis.getX(), TuileAPlacerBis.getY(),
-                             TuileAPlacerBis.state);
-        TuileAPlacer.tileDetails = {1, 1, 2, 2};
-        std::cout << b << std::endl;
-
-        tg1.Board2Matrix();*/
 
     } else if (i == 2) {
         std::cout << "2" << std::endl;

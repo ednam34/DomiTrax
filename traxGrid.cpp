@@ -128,7 +128,6 @@ bool traxGrid::addTraxTuile(int x, int y, TileState player) {
             tileNext.state = TileState::Player1;
         }
         tileNext.index = 1;
-        Board2Matrix();
         return true;
 
     } else {
@@ -142,7 +141,6 @@ int **TileToMatrix(TraxTuile tile) {
     for (int i = 0; i < 3; i++) {
         matrix[i] = new int[3];
     }
-    // initialize the matrix to 3
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             matrix[i][j] = 9;
@@ -156,7 +154,6 @@ int **TileToMatrix(TraxTuile tile) {
         matrix[2][1] = tile.tileDetails.BorderBot;
         matrix[1][1] = 3;
     }
-    // Print the matrix
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             std::cout << matrix[i][j] << " ";

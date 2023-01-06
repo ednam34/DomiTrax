@@ -1,6 +1,4 @@
 #include "hpp/DominoTuileGraphics.hpp"
-#include "hpp/DominoTuileGraphics.hpp"
-
 
 DominoTuileGFX::DominoTuileGFX() {}
 
@@ -8,9 +6,7 @@ DominoTuileGFX::DominoTuileGFX(DominoTuile dominoTuile, int x, int y) {
     this->dominoTuile = dominoTuile;
     this->x = x;
     this->y = y;
-    //dominoTuile.printBorders();
     this->values = dominoTuile.getValues();
-
 }
 
 void DominoTuileGFX::setTextPosition(sf::RenderTarget& target) {
@@ -48,42 +44,35 @@ void DominoTuileGFX::setTextPosition(sf::RenderTarget& target) {
     textW[1].setString(std::to_string(values[3].b));
     textW[2].setString(std::to_string(values[3].c));
 
-
-
-   textN[0].setPosition(
+    textN[0].setPosition(
         (50 / 1.5 - textN[0].getGlobalBounds().width / 1.5) + x, 10 + y);
-    textN[1].setPosition(
-        (50 / 2 - textN[1].getGlobalBounds().width / 2) + x, 10 + y);
-    textN[2].setPosition(
-        (50 / 3 - textN[2].getGlobalBounds().width / 3) + x, 10 + y);
+    textN[1].setPosition((50 / 2 - textN[1].getGlobalBounds().width / 2) + x,
+                         10 + y);
+    textN[2].setPosition((50 / 3 - textN[2].getGlobalBounds().width / 3) + x,
+                         10 + y);
 
     textS[0].setPosition(
         (50 - textS[0].getGlobalBounds().width - 10) + x,
         (50 / 1.5 - textS[0].getGlobalBounds().height / 1.5) + y);
-    textS[1].setPosition(
-        (50 - textS[1].getGlobalBounds().width - 10) + x,
-        (50 / 2 - textS[1].getGlobalBounds().height / 2) + y);
-    textS[2].setPosition(
-        (50 - textS[2].getGlobalBounds().width - 10) + x,
-        (50 / 3 - textS[2].getGlobalBounds().height / 3) + y);
+    textS[1].setPosition((50 - textS[1].getGlobalBounds().width - 10) + x,
+                         (50 / 2 - textS[1].getGlobalBounds().height / 2) + y);
+    textS[2].setPosition((50 - textS[2].getGlobalBounds().width - 10) + x,
+                         (50 / 3 - textS[2].getGlobalBounds().height / 3) + y);
 
     textE[0].setPosition(
         (50 / 1.5 - textE[0].getGlobalBounds().width / 1.5) + x,
         (50 - textE[0].getGlobalBounds().height - 10) + y);
-    textE[1].setPosition(
-        (50 / 2 - textE[1].getGlobalBounds().width / 2) + x,
-        (50 - textE[1].getGlobalBounds().height - 10) + y);
-    textE[2].setPosition(
-        (50 / 3 - textE[2].getGlobalBounds().width / 3) + x,
-        (50 - textE[2].getGlobalBounds().height - 10) + y);
+    textE[1].setPosition((50 / 2 - textE[1].getGlobalBounds().width / 2) + x,
+                         (50 - textE[1].getGlobalBounds().height - 10) + y);
+    textE[2].setPosition((50 / 3 - textE[2].getGlobalBounds().width / 3) + x,
+                         (50 - textE[2].getGlobalBounds().height - 10) + y);
 
     textW[0].setPosition(
-        10 + x,
-        (50 / 1.5 - textW[0].getGlobalBounds().height / 1.5) + y);
-    textW[1].setPosition(
-        10 + x, (50 / 2 - textW[1].getGlobalBounds().height / 2) + y);
-    textW[2].setPosition(
-        10 + x, (50 / 3 - textW[2].getGlobalBounds().height / 3) + y);
+        10 + x, (50 / 1.5 - textW[0].getGlobalBounds().height / 1.5) + y);
+    textW[1].setPosition(10 + x,
+                         (50 / 2 - textW[1].getGlobalBounds().height / 2) + y);
+    textW[2].setPosition(10 + x,
+                         (50 / 3 - textW[2].getGlobalBounds().height / 3) + y);
 
     target.draw(textN[0]);
     target.draw(textN[1]);
@@ -99,17 +88,11 @@ void DominoTuileGFX::setTextPosition(sf::RenderTarget& target) {
     target.draw(textW[2]);
 }
 
-
-void DominoTuileGFX::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void DominoTuileGFX::draw(sf::RenderTarget& target,
+                          sf::RenderStates states) const {
     sf::RectangleShape rectangle(sf::Vector2f(50, 50));
     rectangle.setFillColor(sf::Color::White);
     rectangle.setPosition(x, y);
-    //get the value of the domino tuile
-    //draw the domino tuile
-    
-
-    //draw the borders
 
     target.draw(rectangle);
- 
 }

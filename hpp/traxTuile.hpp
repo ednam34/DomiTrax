@@ -39,4 +39,4 @@ class TraxTuile : public Tuile {
     TilesDetails tilesDetails;
 };
 
-#endif  // TRAXTUILE_HPP
+#endif

@@ -12,8 +12,8 @@
 const int WINDOW_WIDTH = 700;
 const int WINDOW_HEIGHT = 500;
 const int TILE_SIZE = 50;
-const int BOARD_WIDTH = 3;
-const int BOARD_HEIGHT = 3;
+const int BOARD_WIDTH = 10;
+const int BOARD_HEIGHT = 10;
 
 class traxGrid : public Grid {
    public:
@@ -24,7 +24,6 @@ class traxGrid : public Grid {
     std::array<TilesDetails, 7> tilesDetails;
     traxGrid();
     traxGrid(int width, int height);
-    //~traxGrid();
     bool addTraxTuile(int x, int y, TileState player);
     TraxTuile getTraxTuile(int x, int y);
     void printGrid();
@@ -37,8 +36,6 @@ class traxGrid : public Grid {
     void updateTileNext();
 
    protected:
-    // 2d vector of tuiles
-
    private:
     sf::Texture generateRandomTexture();
     int generateRandomTextureIndex();
