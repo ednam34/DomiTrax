@@ -32,7 +32,7 @@ class traxGrid : public Grid {
     void setNextTilesDetails(TraxTuile tileNext);
     bool placeTile(int x, int y, TileState player);
     bool isBoardEmpty();
-    TraxTuile tiles[12][12];
+    TraxTuile tiles[10][10];
     int **Board2Matrix();
     void updateTileNext();
 
